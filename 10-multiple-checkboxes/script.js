@@ -2,12 +2,12 @@ const checkboxes = document.querySelectorAll(".inbox input[type='checkbox']");
 
 let lastChecked;
 
-function handleCheck(event) {
+const handleCheck = (event, selectCheckbox) => {
   let inBetween = false;
 
-  if (event.shiftKey && this.checked) {
+  if (event.shiftKey && selectCheckbox.checked) {
     checkboxes.forEach(checkbox => {
-      if (checkbox === this || checkbox === lastChecked) {
+      if (checkbox === selectCheckbox || checkbox === lastChecked) {
         inBetween = !inBetween;
       }
 
@@ -17,7 +17,7 @@ function handleCheck(event) {
     });
   }
 
-  lastChecked = this;
+  lastChecked = selectCheckbox;
 }
 
-checkboxes.forEach(checkbox => checkbox.addEventListener("click", handleCheck));
+checkboxes.forEach(checkbox => checkbox.addEventListener("click", (event) => handleCheck(event, checkbox)));
